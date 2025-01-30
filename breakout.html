@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <title>potato!</title>
+
+
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            background: #7b1069;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="myCanvas" width="1000" height="900"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var BallX = canvas.width/2;
+        var BallY = canvas.height-30;
+        var bVx = 2;
+        var bVy = -2;
+        var ballRadius = 10;
+
+
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(BallX, BallY, 10,0 ,Math.PI*2);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function draw() {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            drawBall();
+            if (ballX + bVx > canvas.width-ballRadius || BallX + bVx < ballRadius) {
+                bVx = -bVx;
+            }
+            BallY += bVy;
+            BallX += bVx;
+        }
+
+        setInterval(draw, 10);
+    </script>
+</body>
+</html>
